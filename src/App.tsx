@@ -10,7 +10,6 @@ import Statistics from "./components/Statistics/Statistics";
 import AddCard from "./components/AddCard/AddCard";
 import QuestionsList from "./components/QuestionsList/QuestionsList";
 import AddGroup from "./components/AddGroup/AddGroup";
-import TestComponent from "./components/TestComponent/TestComponent";
 
 export const CurrentListIdContext = React.createContext<any>({
   CurrentListId: 0,
@@ -52,7 +51,6 @@ const App: React.FC = () => {
       }}
     >
       <div className="App">
-        Hello from App component
         <Routes>
           <Route path="/" element={<CardList cardBase={cardBase} setCardBase={setCardBase}/>}/>
           <Route path="/card/:id" element={<Card cardBase={cardBase}/>}/>
@@ -62,7 +60,6 @@ const App: React.FC = () => {
           <Route path="/add_card" element={<AddCard cardBase={cardBase} setCardBase={setCardBase}/>}/>
           <Route path="/add_new_group" element={<AddGroup cardBase={cardBase} setCardBase={setCardBase}/>}/>
         </Routes>
-        <TestComponent/>
       </div>
     </CurrentListIdContext.Provider>
   );
