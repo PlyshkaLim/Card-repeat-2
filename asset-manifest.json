@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Card-repeat-2/static/css/main.073c9b0a.css",
+    "main.js": "/Card-repeat-2/static/js/main.a15787a9.js",
+    "static/js/787.0b1eefd0.chunk.js": "/Card-repeat-2/static/js/787.0b1eefd0.chunk.js",
+    "index.html": "/Card-repeat-2/index.html",
+    "main.073c9b0a.css.map": "/Card-repeat-2/static/css/main.073c9b0a.css.map",
+    "main.a15787a9.js.map": "/Card-repeat-2/static/js/main.a15787a9.js.map",
+    "787.0b1eefd0.chunk.js.map": "/Card-repeat-2/static/js/787.0b1eefd0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.a15787a9.js"
+  ]
+}
