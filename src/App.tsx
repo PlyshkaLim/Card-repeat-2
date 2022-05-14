@@ -54,13 +54,15 @@ const App: React.FC = () => {
       <div className="App">
         Hello from App component
         <Routes>
-          <Route path="/" element={<CardList cardBase={cardBase}  setCardBase={setCardBase}/>}/>
+          <Route path="/" element={<CardList cardBase={cardBase} setCardBase={setCardBase}/>}/>
           <Route path="/card/:id" element={<Card cardBase={cardBase}/>}/>
           <Route path="/card/:id/statistics" element={<Statistics cardBase={cardBase}/>}/>
-          <Route path="/card/:id/questions_list" element={<QuestionsList cardBase={cardBase} setCardBase={setCardBase}/>}/>
+          <Route path="/card/:id/questions_list"
+                 element={<QuestionsList cardBase={cardBase} setCardBase={setCardBase}/>}/>
           <Route path="/add_card" element={<AddCard cardBase={cardBase} setCardBase={setCardBase}/>}/>
           <Route path="/add_new_group" element={<AddGroup cardBase={cardBase} setCardBase={setCardBase}/>}/>
         </Routes>
+        <TestComponent/>
       </div>
     </CurrentListIdContext.Provider>
   );
