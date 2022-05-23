@@ -1,31 +1,91 @@
+.header-list {
+    width: 100%;
+    height: 88px;
+    border-bottom: 2px solid #E0E0E0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-list-logo {
+    margin-left: 48px;
+}
+
+.header-list-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #4F4F4F;
+}
+
+.header-list-buttons {
+    margin-right: 32px;
+}
+
+.header-list-buttons button {
+    width: 200px;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    background-color: #006666;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .questions_list_wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .questions_list {
     padding: 10px;
-    border: 1px solid black;
     border-radius: 10px;
     width: 400px;
     min-height: 200px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .card_item {
-    display: grid;
-    grid-template-columns: repeat(2, 150px);
-    grid-template-rows: repeat(2, 25px);
-    justify-content: center;
-    margin: 5px 15px;
+    width: 576px;
+    height: 512px;
+    border-radius: 20px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin: 48px;
+}
 
-    padding: 10px 0;
-    border: 1px solid black;
-    border-radius: 15px;
+.card_item-question {
+    height: 50%;
+    background-color: #72E0E3;
+    border-radius: 20px 20px 0 0;
+    box-sizing: border-box;
+    padding: 32px;
+}
+
+.card_item-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #006666;
+    margin-bottom: 24px;
+}
+
+.card_item-input {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.card_item-answer {
+    height: 50%;
+    box-sizing: border-box;
+    padding: 32px;
 }
 
 .card_item button {
-    width: 75px;
+
 }

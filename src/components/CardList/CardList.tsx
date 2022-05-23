@@ -29,7 +29,7 @@ const CardList: React.FC<any> = (props: any) => {
         </div>
         <div className={'header-buttons'}>
           <Link to={'/add_card'}>
-            <button>Добавить карточку</button>
+            <button>ДОБАВИТЬ КАРТОЧКУ</button>
           </Link>
         </div>
       </div>

@@ -3,6 +3,7 @@ import {CurrentListIdContext} from "../../App";
 import {Link} from "react-router-dom";
 import './QuestionsList.css';
 import cn from "classnames";
+import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
 
 const QuestionsList: React.FC<any> = (props: any) => {
   const {CurrentListId} = useContext(CurrentListIdContext);
@@ -44,7 +45,6 @@ const QuestionsList: React.FC<any> = (props: any) => {
     for (let i = 0; i < cardList.length; i++) {
       if (cardList[i].id == id) {
         return i;
-        break;
       }
     }
     return 0;
@@ -54,7 +54,6 @@ const QuestionsList: React.FC<any> = (props: any) => {
     for (let i = 0; i < currentCard.questions.length; i++) {
       if (currentCard.questions[i].id == id) {
         return i;
-        break;
       }
     }
     return 0;
@@ -72,7 +71,21 @@ const QuestionsList: React.FC<any> = (props: any) => {
     localStorage.setItem('CardBase', JSON.stringify(cardList));
   }
 
-  return (<>
+  return (
+    <div className={'questions_list_content'}>
+      <div className={'header-list'}>
+        <div className={'header-list-logo'}>
+          <img src={JoytekaLogoPng} alt={'JoytekaLogoPng'}/>
+        </div>
+        <div className={'header-list-label'}>
+          ДОБАВЛЕНИЕ КАРТОЧЕК
+        </div>
+        <div className={'header-list-buttons'}>
+          <Link to={'/'}>
+            <button>КО ВСЕМ ТЕМАМ</button>
+          </Link>
+        </div>
+      </div>
       {isChange
         ?
         <div>
@@ -97,18 +110,30 @@ const QuestionsList: React.FC<any> = (props: any) => {
             </div>
             <div>
               {currentCard.questions.map((item: any, id: number) =>
-                <div key={id} className={cn('card_item')}>
-                  <div>
-                    {item.question}
-                  </div>
-                  <div>
-                    <button onClick={() => changeCard(item.id)}>Изменить</button>
-                  </div>
-                  <div>
-                    {item.answer}
-                  </div>
-                  <div>
-                    <button onClick={() => deleteCard(item.id)}>Удалить</button>
+                <div key={id} className={cn('card_item-wrapper')}>
+                  <div className={'card_item'}>
+                    <div className={'card_item-question'}>
+                      <div className={'card_item-label'}>
+                        ВОПРОС
+                      </div>
+                      <div className={'card_item-input'}>
+                        {item.question}
+                      </div>
+                    </div>
+                    <div className={'card_item-answer'}>
+                      <div className={'card_item-label'}>
+                        ВЕРНЫЙ ОТВЕТ
+                      </div>
+                      <div className={'card_item-input'}>
+                        {item.answer}
+                      </div>
+                    </div>
+                    <div>
+                      <button onClick={() => deleteCard(item.id)}>Удалить</button>
+                    </div>
+                    <div>
+                      <button onClick={() => changeCard(item.id)}>Изменить</button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -119,7 +144,7 @@ const QuestionsList: React.FC<any> = (props: any) => {
           </div>
         </div>
       }
-    </>
+    </div>
   )
 }
 
