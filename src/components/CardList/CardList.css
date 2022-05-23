@@ -1,18 +1,131 @@
 .card_list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     width: 100%;
+    flex-wrap: wrap;
+    margin: 24px;
 }
 
 .card_block {
-    border: 1px solid black;
-    width: 400px;
-    min-height: 125px;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 10px;
+    box-sizing: border-box;
+    width: 360px;
+    height: 354px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
+    margin: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.new_card_block {
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+.card_block-content {
+    flex-grow: 1;
+    font-size: 24px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.card_block-button button {
+    width: 312px;
+    height: 42px;
+    font-size: 14px;
+    background-color: #006666;
+    border: none;
+    border-radius: 6px;
+    color: #FFFFFF;
+}
+
+.card_block-label_name {
+    box-sizing: border-box;
+    font-weight: bold;
+    height: 144px;
+    width: 100%;
+    background-color: #72E0E3;
+    border-radius: 20px 20px 0 0;
+    padding: 24px;
+}
+
+.card_block-main_content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px 24px 24px;
+    height: 190px;
+}
+
+.card_block-statistic {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.card_block-statistic-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50px;
+    margin: 15px 0;
+    flex-grow: 1;
+    color: #4F4F4F;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.card_block-button_play {
+    align-self: flex-end;
+    position: relative;
+    top: -75px;
+}
+
+.card_block-button_play button {
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    border: none;
+}
+
+.card_block-button_edit {
+    margin-bottom: 15px;
+}
+
+.card_block-button_edit button {
+    width: 312px;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    color: #006666;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #E6F0F0;
+}
+
+.card_block-stat_del {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.card_block-stat_del-stat {
+    flex-grow: 1;
+}
+
+.card_block-stat_del-stat button {
+    flex-grow: 1;
+    border: none;
+    background-color: #FFFFFF;
+    color: #006262;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.card_block-stat_del-del button {
+    flex-grow: 1;
 }

@@ -2,34 +2,117 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .card_content {
-    width: 500px;
-    height: 300px;
-    margin: 10px;
+    width: 576px;
+    height: 512px;
     font-size: 24px;
-    border: 1px solid black;
-    border-radius: 15px;
+    border-radius: 20px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
 }
 
-.button {
-    width: 170px;
-    height: 40px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 2px solid gray;
-    margin: 5px;
+.card_content-question {
+    height: 50%;
+    background-color: #72E0E3;
+    border-radius: 20px 20px 0 0;
+    box-sizing: border-box;
+    padding: 32px;
+    text-align: left;
+}
+
+.card_content-question-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.card_content-answer {
+    box-sizing: border-box;
+    padding: 32px;
+}
+
+.card_content-answer-label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.card_content-answer-check {
+    display: flex;
+    flex-direction: column;
+}
+
+.card_content-answer-check-input textarea {
+    max-width: 512px;
+    min-width: 512px;
+    max-height: 84px;
+    min-height: 84px;
+    height: 84px;
+    border: none;
+    flex-grow: 1;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.card_content-answer-check-button button {
+    width: 100%;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    color: #006666;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #E6F0F0;
+}
+
+.card_content-answer-check-button button:disabled {
+    color: #4F4F4F;
+    background-color: #F2F2F2;
+}
+
+.card_content-answer-show {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_content-answer-show-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #006666;
+}
+
+.card_content-answer-show-input {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.card_content-answer-show-buttons {
+    border-top: 1px solid #BDBDBD;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-top: 24px;
+}
+
+.card_content-answer-show-buttons button {
+    width: 248px;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
 .correct {
-    background-color: limegreen;
+    color: #10A376;
+    background-color: #E6F0F0;
 }
 
 .incorrect {
-    background-color: indianred;
-}
-
-.answ {
-    width: 100px;
+    color: #D22D25;
+    background-color: #FFEEED;
 }

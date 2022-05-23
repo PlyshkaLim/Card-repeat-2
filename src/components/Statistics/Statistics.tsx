@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 import {CurrentListIdContext} from "../../App";
 
-
 const Statistics: React.FC<any> = (props: any) => {
   const {CurrentListId} = useContext(CurrentListIdContext);
   const cardList = props.cardBase;

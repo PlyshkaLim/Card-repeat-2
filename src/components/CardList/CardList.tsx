@@ -19,43 +19,71 @@ const CardList: React.FC<any> = (props: any) => {
 
   return (
     <div className={cn('card_list')}>
-      <div>
-        <Link to={'/add_new_group'}>
-          <button>Добавить новую группу</button>
+      <div className={cn('card_block new_card_block')}>
+
+        <div className={'card_block-content'}>
+          Создайте свою первую тему карточек с вопросами
+        </div>
+        <div className={'card_block-button'}>
+          <Link to={'/add_new_group'}>
+            <button>Создать</button>
+          </Link>
+        </div>
+
+      </div>
+      <div className={cn('card_block')}>
+        Список групп с карточками
+        <Link to={'/add_card'}>
+          <button>Добавить карточку</button>
         </Link>
       </div>
-      Список групп с карточками
-      <Link to={'/add_card'}>
-        <button>Добавить карточку</button>
-      </Link>
       {cardList.map((list: any, id: number) =>
         <div className={cn('card_block')} key={id}>
-          <div>
+          <div className={'card_block-label_name'}>
             {list.name}
           </div>
-          <div>
-            Количество карточек: {list.statistic.questionsCount}
+          <div className={'card_block-main_content'}>
+            <div className={'card_block-statistic'}>
+              <div className={'card_block-statistic-labels'}>
+                <div>
+                  Количество карточек: {list.statistic.questionsCount}
+                </div>
+                <div>
+                  Отвеченных карточек: {list.statistic.correctAnswers}
+                </div>
+              </div>
+              <div className={'card_block-button_play'}>
+                <Link to={`/card/${list.id}`}>
+                  <button onClick={() => changeCurListId(list.id)}>
+                    play
+                  </button>
+                </Link>
+              </div>
+            </div>
+            <div className={'card_block-button_edit'}>
+              <Link to={`/card/${list.id}/questions_list`}>
+                <button onClick={() => changeCurListId(list.id)}>
+                  РЕДАКТИРОВАТЬ ТЕМУ
+                </button>
+              </Link>
+            </div>
+            <div className={'card_block-stat_del'}>
+              <div className={'card_block-stat_del-stat'}>
+                <Link to={`/card/${list.id}/statistics`}>
+                  <button onClick={() => changeCurListId(list.id)}>
+                    СТАТИСТИКА
+                  </button>
+                </Link>
+              </div>
+              <div className={'card_block-stat_del-del'}>
+                <button onClick={() => deleteCurrentGroup(list.id)}>
+                  del
+                </button>
+              </div>
+            </div>
           </div>
-          <Link to={`/card/${list.id}`}>
-            <button onClick={() => changeCurListId(list.id)}>
-              К вопросам
-            </button>
-          </Link>
-          <Link to={`/card/${list.id}/questions_list`}>
-            <button onClick={() => changeCurListId(list.id)}>
-              Список вопросов
-            </button>
-          </Link>
-          <Link to={`/card/${list.id}/statistics`}>
-            <button onClick={() => changeCurListId(list.id)}>
-              Статистика
-            </button>
-          </Link>
-          <div>
-            <button onClick={() => deleteCurrentGroup(list.id)}>
-              Удалить группу
-            </button>
-          </div>
+
+
         </div>)}
     </div>
   )
