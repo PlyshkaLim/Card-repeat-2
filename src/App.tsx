@@ -11,6 +11,7 @@ import AddCard from "./components/AddCard/AddCard";
 import QuestionsList from "./components/QuestionsList/QuestionsList";
 import AddGroup from "./components/AddGroup/AddGroup";
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import JoytekaLogoPng from './images/JoytekaLogoPng.png'
 
 export const CurrentListIdContext = React.createContext<any>({
   CurrentListId: 0,
@@ -52,9 +53,17 @@ const App: React.FC = () => {
       }}
     >
       <div className={'app'}>
-        <div className={'header'}>
-          header
-        </div>
+        {/*<div className={'header'}>*/}
+        {/*  <div className={'header-logo'}>*/}
+        {/*    <img src={JoytekaLogoPng} alt={'JoytekaLogoPng'}/>*/}
+        {/*  </div>*/}
+        {/*  <div className={'header-label'}>*/}
+        {/*    ТЕМЫ КАРТОЧЕК*/}
+        {/*  </div>*/}
+        {/*  <div className={'header-buttons'}>*/}
+        {/*    Buttons*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         <div className={'content'}>
         <Routes>
           <Route path="/" element={<CardList cardBase={cardBase} setCardBase={setCardBase}/>}/>

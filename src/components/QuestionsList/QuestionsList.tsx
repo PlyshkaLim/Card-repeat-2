@@ -19,6 +19,7 @@ const QuestionsList: React.FC<any> = (props: any) => {
   function handleChange(event: any) {
     setCurrentQuestion(event.target.value)
   }
+
   function handleChange2(event: any) {
     setCurrentAnswer(event.target.value)
   }
@@ -33,6 +34,30 @@ const QuestionsList: React.FC<any> = (props: any) => {
 
   function saveCard() {
     setIsChange(false);
+    cardList[getGroupPositionById(CurrentListId)].questions[getQuestionPositionById(currentChanging.id)].question = currentQuestion;
+    cardList[getGroupPositionById(CurrentListId)].questions[getQuestionPositionById(currentChanging.id)].answer = currentAnswer;
+    props.setCardBase(cardList);
+    localStorage.setItem('CardBase', JSON.stringify(cardList));
+  }
+
+  function getGroupPositionById(id: number) {
+    for (let i = 0; i < cardList.length; i++) {
+      if (cardList[i].id == id) {
+        return i;
+        break;
+      }
+    }
+    return 0;
+  }
+
+  function getQuestionPositionById(id: number) {
+    for (let i = 0; i < currentCard.questions.length; i++) {
+      if (currentCard.questions[i].id == id) {
+        return i;
+        break;
+      }
+    }
+    return 0;
   }
 
   function deleteCard(cardId: number) {

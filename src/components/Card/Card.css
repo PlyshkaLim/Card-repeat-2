@@ -1,3 +1,38 @@
+
+.header-card {
+    width: 100%;
+    height: 88px;
+    border-bottom: 2px solid #E0E0E0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-card-logo {
+    margin-left: 48px;
+}
+
+.header-card-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #4F4F4F;
+}
+
+.header-card-buttons {
+    margin-right: 32px;
+}
+
+.header-card-buttons button {
+    width: 200px;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    background-color: #E6F0F0;
+    color: #006666;
+    font-size: 14px;
+    font-weight: 500;
+}
 .card {
     display: flex;
     flex-direction: column;

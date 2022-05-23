@@ -3,6 +3,7 @@ import './Card.css';
 import {Link} from "react-router-dom";
 import {CurrentListIdContext} from "../../App";
 import cn from "classnames";
+import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
 
 const Card: React.FC<any> = (props: any) => {
   const emptyQuestion = {
@@ -77,73 +78,78 @@ const Card: React.FC<any> = (props: any) => {
   }
 
   return (
-    <div className={'card'}>
-      <div className={'card_content'}>
-
-        <div className={'card_content-question'}>
-          <div className={'card_content-question-label'}>
-            ВОПРОС
-          </div>
-          {currentQuestion !== -1 ?
-            <>{currentQuestion.question}</>
-            :
-            <>Вы повторили все карточки!</>
-          }
-
+    <div>
+      <div className={'header-card'}>
+        <div className={'header-card-logo'}>
+          <img src={JoytekaLogoPng} alt={'JoytekaLogoPng'}/>
         </div>
-        <div className={'card_content-answer'}>
-
-          {isQuestion
-            ?
-            <>
-              <div className={'card_content-answer-label'}>
-                ВАШ ОТВЕТ
-              </div>
-              <div className={'card_content-answer-check'}>
-                <div className={'card_content-answer-check-input'}>
+        <div className={'header-card-label'}>
+          {currentList.name.toUpperCase()}
+        </div>
+        <div className={'header-card-buttons'}>
+          <Link to={'/'}>
+            <button>ЗАВЕРШИТЬ ДОСРОЧНО</button>
+          </Link>
+        </div>
+      </div>
+      <div className={'card'}>
+        <div className={'card_content'}>
+          <div className={'card_content-question'}>
+            <div className={'card_content-question-label'}>
+              ВОПРОС
+            </div>
+            {currentQuestion !== -1 ?
+              <>{currentQuestion.question}</>
+              :
+              <>Вы повторили все карточки!</>
+            }
+          </div>
+          <div className={'card_content-answer'}>
+            {isQuestion
+              ?
+              <>
+                <div className={'card_content-answer-label'}>
+                  ВАШ ОТВЕТ
+                </div>
+                <div className={'card_content-answer-check'}>
+                  <div className={'card_content-answer-check-input'}>
                 <textarea onChange={handleChange}
                           placeholder={'Введите верный ответ прямо тут'}/>
+                  </div>
+                  <div className={'card_content-answer-check-button'}>
+                    <button onClick={checkAnswer}
+                            disabled={currentAnswer === ''}>
+                      ОТВЕТИТЬ
+                    </button>
+                  </div>
                 </div>
-                <div className={'card_content-answer-check-button'}>
-                  <button onClick={checkAnswer}
-                          disabled={currentAnswer === ''}>
-                    ОТВЕТИТЬ
+              </>
+              :
+              <div className={'card_content-answer-show'}>
+                <div className={'card_content-answer-show-label'}>
+                  ВЕРНЫЙ ОТВЕТ
+                </div>
+                <div className={'card_content-answer-show-input'}>
+                  {currentQuestion.answer}
+                </div>
+                <div className={'card_content-answer-show-label'}>
+                  ВАШ ОТВЕТ
+                </div>
+                <div className={'card_content-answer-show-input'}>
+                  {currentAnswer}
+                </div>
+                <div className={'card_content-answer-show-buttons'}>
+                  <button onClick={answerIncorrect} className={'incorrect'}>
+                    МОЙ ОТВЕТ НЕВЕРНЫЙ
+                  </button>
+                  <button onClick={answerCorrect} className={'correct'}>
+                    МОЙ ОТВЕТ ВЕРНЫЙ
                   </button>
                 </div>
               </div>
-            </>
-            :
-            <div className={'card_content-answer-show'}>
-              <div className={'card_content-answer-show-label'}>
-                ВЕРНЫЙ ОТВЕТ
-              </div>
-              <div className={'card_content-answer-show-input'}>
-                {currentQuestion.answer}
-              </div>
-              <div className={'card_content-answer-show-label'}>
-                ВАШ ОТВЕТ
-              </div>
-              <div className={'card_content-answer-show-input'}>
-                {currentAnswer}
-              </div>
-              <div className={'card_content-answer-show-buttons'}>
-                <button onClick={answerIncorrect} className={'incorrect'}>
-                  МОЙ ОТВЕТ НЕВЕРНЫЙ
-                </button>
-                <button onClick={answerCorrect} className={'correct'}>
-                  МОЙ ОТВЕТ ВЕРНЫЙ
-                </button>
-              </div>
-            </div>
-          }
+            }
+          </div>
         </div>
-
-
-      </div>
-      <div>
-        <Link to={'/'}>
-          <button>К папкам</button>
-        </Link>
       </div>
     </div>)
 }
