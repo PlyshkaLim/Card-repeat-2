@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 const AddCard: React.FC<any> = (props: any) => {
   const cardList = props.cardBase;
-  const [selectedOption, setSelectedOption] = useState<number>(0);
+  const [selectedOption, setSelectedOption] = useState<number>(cardList[0].id);
   const [currentQuestion, setCurrentQuestion] = useState<string>('');
   const [currentAnswer, setCurrentAnswer] = useState<string>('');
 
@@ -29,7 +29,7 @@ const AddCard: React.FC<any> = (props: any) => {
   }
 
   function addNewCard() {
-    cardList[selectedOption].questions.push(
+    cardList[getPositionById(selectedOption)].questions.push(
       {
         id: getRandomId(),
         question: currentQuestion,
@@ -37,11 +37,26 @@ const AddCard: React.FC<any> = (props: any) => {
         date: 0
       }
     )
-    cardList[selectedOption].statistic.questionsCount += 1;
+    cardList[getPositionById(selectedOption)].statistic.questionsCount += 1;
     setCurrentQuestion('');
     setCurrentAnswer('');
     props.setCardBase(cardList);
     localStorage.setItem('CardBase', JSON.stringify(cardList));
+    console.log('Success add new card!')
+  }
+
+  function getPositionById(id: number) {
+    for (let i = 0; i < cardList.length; i++) {
+      if (cardList[i].id == id) {
+        return i;
+        break;
+      }
+    }
+    return 0;
+  }
+
+  function getCurrentOptionName(optionId: number) {
+    return cardList.filter((item: any) => item.id === optionId)[0].name;
   }
 
   return (
@@ -49,7 +64,7 @@ const AddCard: React.FC<any> = (props: any) => {
       <div className={cn('new_card_content')}>
         <div className={cn('add_card_group')}>
           <span>Добавить карточку к группе: </span>
-          <select value={cardList[selectedOption].name} onChange={handleChange}>
+          <select value={getCurrentOptionName(selectedOption)} onChange={handleChange}>
             {cardList.map((item: any, id: any) => <option key={id}>{item.name}</option>)}
           </select>
         </div>
