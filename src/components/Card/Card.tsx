@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import './Card.css';
 import {Link} from "react-router-dom";
 import {CurrentListIdContext} from "../../App";
-import cn from "classnames";
 import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
 
 const Card: React.FC<any> = (props: any) => {
@@ -98,11 +97,13 @@ const Card: React.FC<any> = (props: any) => {
             <div className={'card_content-question-label'}>
               ВОПРОС
             </div>
-            {currentQuestion !== -1 ?
-              <>{currentQuestion.question}</>
-              :
-              <>Вы повторили все карточки!</>
-            }
+            <div className={'card_content-question-text'}>
+              {currentQuestion !== -1 ?
+                <>{currentQuestion.question}</>
+                :
+                <>Вы повторили все карточки!</>
+              }
+            </div>
           </div>
           <div className={'card_content-answer'}>
             {isQuestion
@@ -113,8 +114,8 @@ const Card: React.FC<any> = (props: any) => {
                 </div>
                 <div className={'card_content-answer-check'}>
                   <div className={'card_content-answer-check-input'}>
-                <textarea onChange={handleChange}
-                          placeholder={'Введите верный ответ прямо тут'}/>
+                    <textarea onChange={handleChange}
+                              placeholder={'Введите верный ответ прямо тут'}/>
                   </div>
                   <div className={'card_content-answer-check-button'}>
                     <button onClick={checkAnswer}

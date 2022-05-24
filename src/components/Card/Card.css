@@ -33,6 +33,7 @@
     font-size: 14px;
     font-weight: 500;
 }
+
 .card {
     display: flex;
     flex-direction: column;
@@ -61,6 +62,15 @@
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 24px;
+    color: #006666;
+}
+
+.card_content-question-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    max-height: 150px;
+    overflow: auto;
 }
 
 .card_content-answer {
@@ -73,6 +83,7 @@
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 24px;
+    color: #006666;
 }
 
 .card_content-answer-check {
@@ -89,7 +100,8 @@
     border: none;
     flex-grow: 1;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 500;
+    color: #333333;
 }
 
 .card_content-answer-check-button button {
