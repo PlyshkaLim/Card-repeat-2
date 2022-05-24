@@ -10,6 +10,7 @@ import Statistics from "./components/Statistics/Statistics";
 import AddCard from "./components/AddCard/AddCard";
 import QuestionsList from "./components/QuestionsList/QuestionsList";
 import AddGroup from "./components/AddGroup/AddGroup";
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 export const CurrentListIdContext = React.createContext<any>({
   CurrentListId: 0,
