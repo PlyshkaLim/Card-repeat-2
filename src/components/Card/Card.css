@@ -39,6 +39,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 
 .card_content {
@@ -47,6 +48,7 @@
     font-size: 24px;
     border-radius: 20px;
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
+
 }
 
 .card_content-question {
@@ -76,6 +78,7 @@
 .card_content-answer {
     box-sizing: border-box;
     padding: 32px;
+
 }
 
 .card_content-answer-label {
@@ -124,17 +127,21 @@
     text-align: left;
     display: flex;
     flex-direction: column;
+    max-height: 130px;
+    overflow: auto;
 }
 
 .card_content-answer-show-label {
     font-size: 14px;
     font-weight: 500;
     color: #006666;
+    margin-bottom: 24px;
 }
 
 .card_content-answer-show-input {
     font-size: 18px;
     font-weight: 500;
+    margin-bottom: 24px;
 }
 
 .card_content-answer-show-buttons {

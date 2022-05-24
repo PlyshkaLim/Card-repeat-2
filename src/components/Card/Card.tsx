@@ -126,18 +126,20 @@ const Card: React.FC<any> = (props: any) => {
                 </div>
               </>
               :
-              <div className={'card_content-answer-show'}>
-                <div className={'card_content-answer-show-label'}>
-                  ВЕРНЫЙ ОТВЕТ
-                </div>
-                <div className={'card_content-answer-show-input'}>
-                  {currentQuestion.answer}
-                </div>
-                <div className={'card_content-answer-show-label'}>
-                  ВАШ ОТВЕТ
-                </div>
-                <div className={'card_content-answer-show-input'}>
-                  {currentAnswer}
+              <div>
+                <div className={'card_content-answer-show'}>
+                  <div className={'card_content-answer-show-label'}>
+                    ВЕРНЫЙ ОТВЕТ
+                  </div>
+                  <div className={'card_content-answer-show-input'}>
+                    {currentQuestion.answer}
+                  </div>
+                  <div className={'card_content-answer-show-label'}>
+                    ВАШ ОТВЕТ
+                  </div>
+                  <div className={'card_content-answer-show-input'}>
+                    {currentAnswer}
+                  </div>
                 </div>
                 <div className={'card_content-answer-show-buttons'}>
                   <button onClick={answerIncorrect} className={'incorrect'}>
