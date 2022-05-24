@@ -38,7 +38,9 @@ const CardList: React.FC<any> = (props: any) => {
       <div className={cn('card_list')}>
         <div className={cn('card_block new_card_block')}>
           <div className={'card_block-content'}>
-            Создайте свою первую тему карточек с вопросами
+            Создайте свою
+            {cardList.length === 0 ? <> первую </> : <> </>}
+            тему карточек с вопросами
           </div>
           <div className={'card_block-button'}>
             <Link to={'/add_new_group'}>
