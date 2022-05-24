@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import cn from "classnames";
 import './AddCard.css';
 import {Link} from "react-router-dom";
+import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
+import SaveIcon from "../../images/SaveIcon";
 
 const AddCard: React.FC<any> = (props: any) => {
   const cardList = props.cardBase;
@@ -49,7 +50,6 @@ const AddCard: React.FC<any> = (props: any) => {
     for (let i = 0; i < cardList.length; i++) {
       if (cardList[i].id == id) {
         return i;
-        break;
       }
     }
     return 0;
@@ -60,27 +60,65 @@ const AddCard: React.FC<any> = (props: any) => {
   }
 
   return (
-    <div className={cn('new_card')}>
-      <div className={cn('new_card_content')}>
-        <div className={cn('add_card_group')}>
-          <span>Добавить карточку к группе: </span>
-          <select value={getCurrentOptionName(selectedOption)} onChange={handleChange}>
-            {cardList.map((item: any, id: any) => <option key={id}>{item.name}</option>)}
-          </select>
+    <div className={'add_card'}>
+      <div className={'add_card-header'}>
+        <div className={'add_card-header-logo'}>
+          <img src={JoytekaLogoPng} alt={'JoytekaLogoPng'}/>
         </div>
-        <div className={cn('card_question')}>
-          <span>Введите вопрос: </span>
-          <input value={currentQuestion} onChange={handleChange2}/>
+        <div className={'add_card-header-label'}>
+          ДОБАВИТЬ НОВУЮ КАРТОЧКУ
         </div>
-        <div className={cn('card_answer')}>
-          <span>Введите ответ: </span>
-          <input value={currentAnswer} onChange={handleChange3}/>
+        <div className={'add_card-header-buttons'}>
+          <Link to={'/'}>
+            <button>
+              КО ВСЕМ ТЕМАМ
+            </button>
+          </Link>
         </div>
-        <button onClick={addNewCard}>Добавить вопрос</button>
-        <Link to={'/'}>
-          <button>К папкам</button>
-        </Link>
       </div>
+      <div className={'new_card'}>
+        <div className={'add_card-group_name'}>
+          <div className={'add_card-group_name-label'}>
+            НАЗВАНИЕ ТЕМЫ
+          </div>
+          <div className={'add_card-group_name-select'}>
+            <select value={getCurrentOptionName(selectedOption)}
+                    onChange={handleChange}>
+              {cardList.map((item: any, id: any) =>
+                <option key={id}>{item.name}</option>)}
+            </select>
+          </div>
+        </div>
+        <div className={'new_card_content'}>
+          <div>
+            <div className={'card_question'}>
+              <div className={'card_question-label'}>
+                ВОПРОС
+              </div>
+              <div className={'card_question-input'}>
+              <textarea value={currentQuestion}
+                        onChange={handleChange2}
+                        placeholder={'Введите вопрос прямо тут'}/>
+              </div>
+            </div>
+            <div className={'card_answer'}>
+              <div className={'card_answer-label'}>
+                ВЕРНЫЙ ОТВЕТ
+              </div>
+              <div className={'card_answer-input'}>
+              <textarea value={currentAnswer}
+                        onChange={handleChange3}
+                        placeholder={'Введите верный ответ прямо тут'}/>
+              </div>
+            </div>
+          </div>
+          <div className={'card-button_save'}>
+            <button onClick={addNewCard}>
+              <SaveIcon/>
+            </button>
+          </div>
+        </div>
+        </div>
     </div>
   )
 }
