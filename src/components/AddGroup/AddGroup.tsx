@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import cn from "classnames";
 import './AddGroup.css';
+import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
 
 const AddGroup: React.FC<any> = (props: any) => {
   const emptyCard = {
@@ -50,16 +50,37 @@ const AddGroup: React.FC<any> = (props: any) => {
   }
 
   return (
-    <div className={cn('add_group')}>
-      <div className={cn('add_group_content')}>
-      <span>
-        Добавить новую группу
-      </span>
-        <input value={currentGroupName} onChange={handleChange}/>
-        <button onClick={addNewGroupName}>Добавить</button>
-        <Link to={'/'}>
-          <button>К папкам</button>
-        </Link>
+    <div className={'add_group'}>
+      <div className={'add_group-header'}>
+        <div className={'add_group-header-logo'}>
+          <img src={JoytekaLogoPng} alt={'JoytekaLogoPng'}/>
+        </div>
+        <div className={'add_group-header-label'}>
+          ДОБАВИТЬ ТЕМУ
+        </div>
+        <div className={'add_group-header-buttons'}>
+          <Link to={'/'}>
+            <button>
+              КО ВСЕМ ТЕМАМ
+            </button>
+          </Link>
+        </div>
+      </div>
+      <div className={'add_group_content'}>
+        <div className={'add_group_content-label'}>
+          НАЗВАНИЕ ТЕМЫ
+        </div>
+        <div className={'add_group_content-input'}>
+          <input value={currentGroupName}
+                 onChange={handleChange}
+                 placeholder={'Введите название темы'}/>
+        </div>
+        <div className={'add_group_content-button'}>
+          <button onClick={addNewGroupName}
+                  disabled={currentGroupName === ''}>
+            ДОБАВИТЬ
+          </button>
+        </div>
       </div>
     </div>
   )
