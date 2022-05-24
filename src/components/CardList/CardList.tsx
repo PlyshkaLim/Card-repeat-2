@@ -4,6 +4,8 @@ import {CurrentListIdContext} from "../../App";
 import cn from "classnames";
 import './CardList.css';
 import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
+import DeleteIcon from "../../images/DeleteIcon";
+import PlayIcon from "../../images/PlayIcon";
 
 const CardList: React.FC<any> = (props: any) => {
   const {dispatchChangeCurrentListId} = useContext(CurrentListIdContext);
@@ -62,7 +64,7 @@ const CardList: React.FC<any> = (props: any) => {
                 <div className={'card_block-button_play'}>
                   <Link to={`/card/${list.id}`}>
                     <button onClick={() => changeCurListId(list.id)}>
-                      play
+                      <PlayIcon/>
                     </button>
                   </Link>
                 </div>
@@ -84,7 +86,7 @@ const CardList: React.FC<any> = (props: any) => {
                 </div>
                 <div className={'card_block-stat_del-del'}>
                   <button onClick={() => deleteCurrentGroup(list.id)}>
-                    del
+                    <DeleteIcon/>
                   </button>
                 </div>
               </div>

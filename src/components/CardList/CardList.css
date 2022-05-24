@@ -125,6 +125,10 @@
     height: 64px;
     border-radius: 100%;
     border: none;
+    background-color: #FFFFFF;
+    padding-left: 10px;
+    padding-top: 5px;
+    box-shadow: 4px 4px 19px 0 rgba(0, 0, 0, 0.15);
 }
 
 .card_block-button_edit {
@@ -145,11 +149,13 @@
 .card_block-stat_del {
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: 100%;
 }
 
 .card_block-stat_del-stat {
     flex-grow: 1;
+    height: 24px;
 }
 
 .card_block-stat_del-stat button {
@@ -163,4 +169,6 @@
 
 .card_block-stat_del-del button {
     flex-grow: 1;
+    background-color: #FFFFFF;
+    border: none;
 }

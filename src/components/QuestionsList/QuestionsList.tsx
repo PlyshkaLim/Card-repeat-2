@@ -4,6 +4,9 @@ import {Link} from "react-router-dom";
 import './QuestionsList.css';
 import cn from "classnames";
 import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
+import DeleteIcon from "../../images/DeleteIcon";
+import EditIcon from "../../images/EditIcon";
+import SaveIcon from "../../images/SaveIcon";
 
 const QuestionsList: React.FC<any> = (props: any) => {
   const {CurrentListId} = useContext(CurrentListIdContext);
@@ -88,25 +91,39 @@ const QuestionsList: React.FC<any> = (props: any) => {
       </div>
       {isChange
         ?
-        <div>
-          <input value={currentQuestion} onChange={handleChange}/>
-          <br/>
-          <input value={currentAnswer} onChange={handleChange2}/>
-          <br/>
-          <button onClick={() => saveCard()}>Сохранить</button>
-          <br/>
-          <Link to={'/'}>
-            <button>К папкам</button>
-          </Link>
+        <div className={'change_card'}>
+          <div>
+            <div className={'change_card-question'}>
+              <div className={'change_card-question-label'}>
+                ВОПРОС
+              </div>
+              <div className={'change_card-question-input'}>
+                <textarea value={currentQuestion} onChange={handleChange}/>
+              </div>
+            </div>
+            <div className={'change_card-answer'}>
+              <div className={'change_card-answer-label'}>
+                ОТВЕТ
+              </div>
+              <div className={'change_card-answer-input'}>
+                <textarea value={currentAnswer} onChange={handleChange2}/>
+              </div>
+            </div>
+          </div>
+          <div className={'change_card-button'}>
+            <button onClick={() => saveCard()}>
+              <SaveIcon/>
+            </button>
+          </div>
         </div>
         :
         <div className={cn('questions_list_wrapper')}>
           <div className={cn('questions_list')}>
-            <div>
-              Список вопросов в группе - {cardName}
+            <div className={'questions_list-label_name'}>
+              НАЗВАНИЕ ТЕМЫ
             </div>
-            <div>
-              количество вопросов - {currentCount}
+            <div className={'questions_list-name'}>
+              {cardName}
             </div>
             <div>
               {currentCard.questions.map((item: any, id: number) =>
@@ -128,19 +145,22 @@ const QuestionsList: React.FC<any> = (props: any) => {
                         {item.answer}
                       </div>
                     </div>
-                    <div>
-                      <button onClick={() => deleteCard(item.id)}>Удалить</button>
+                  </div>
+                  <div className={'card_item-buttons'}>
+                    <div className={'card_item-buttons-button'}>
+                      <button onClick={() => changeCard(item.id)}>
+                        <EditIcon/>
+                      </button>
                     </div>
-                    <div>
-                      <button onClick={() => changeCard(item.id)}>Изменить</button>
+                    <div className={'card_item-buttons-button'}>
+                      <button onClick={() => deleteCard(item.id)}>
+                        <DeleteIcon/>
+                      </button>
                     </div>
                   </div>
                 </div>
               )}
             </div>
-            <Link to={'/'}>
-              <button>К папкам</button>
-            </Link>
           </div>
         </div>
       }
