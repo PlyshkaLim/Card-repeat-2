@@ -1,0 +1,35 @@
+.grey-color {
+    background-color: #E6F0F0;
+}
+
+.blue-color {
+    background-color: #72E0E3;
+}
+
+.orange-color {
+    background-color: #FFA742;
+}
+
+.yellow-color {
+    background-color: #FFDD48;
+}
+
+.lightblue-color {
+    background-color: #C9FFFB;
+}
+
+.yellow-to-light-blue-color {
+    background: linear-gradient(90deg, #FBED96, #ABECD6);
+}
+
+.yellow-to-orange-color {
+    background: linear-gradient(90deg, #FFE259, #FFA751);
+}
+
+.orange-to-light-blue-color {
+    background: linear-gradient(90deg,  rgba(255, 203, 141, 0.96), #C1FCEE);
+}
+
+.light-blue-to-green-color {
+    background: linear-gradient(90deg, rgba(154, 237, 242, 0.71), #C2E59C);
+}

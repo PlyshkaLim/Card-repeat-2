@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import './AddGroup.css';
 import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
+import {Colors} from "../../App";
 
 const AddGroup: React.FC<any> = (props: any) => {
   const emptyCard = {
@@ -30,6 +31,7 @@ const AddGroup: React.FC<any> = (props: any) => {
       {
         id: getRandomId(),
         name: currentGroupName,
+        groupColor: Colors.Grey,
         questions: [],
         statistic: {
           questionsCount: 0,

@@ -1,12 +1,14 @@
 import React, {useContext, useState} from "react";
-import {CurrentListIdContext} from "../../App";
+import {colorsList, CurrentListIdContext} from "../../App";
 import {Link} from "react-router-dom";
+import '../../ColorsList.css';
 import './QuestionsList.css';
 import cn from "classnames";
 import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
 import DeleteIcon from "../../images/DeleteIcon";
 import EditIcon from "../../images/EditIcon";
 import SaveIcon from "../../images/SaveIcon";
+import CopyIcon from "../../images/CopyIcon";
 
 const QuestionsList: React.FC<any> = (props: any) => {
   const {CurrentListId} = useContext(CurrentListIdContext);
@@ -62,16 +64,39 @@ const QuestionsList: React.FC<any> = (props: any) => {
     return 0;
   }
 
+  function copyCard(cardId: number) {
+    const questionId = getQuestionPositionById(cardId);
+    const currentCardId = getGroupPositionById(CurrentListId);
+    cardList[currentCardId].questions.push(cardList[currentCardId].questions[questionId]);
+    cardList[currentCardId].statistic.questionsCount += 1;
+    props.setCardBase(cardList);
+    setCurrentCount(currentCard.statistic.questionsCount);
+    localStorage.setItem('CardBase', JSON.stringify(cardList));
+  }
+
   function deleteCard(cardId: number) {
     for (let i = 0; i < cardList.length; i++) {
       if (cardList[i].id === CurrentListId) {
         cardList[i].questions = currentCard.questions.filter((i: any) => i.id !== cardId);
-        cardList[i].statistic.questionsCount -= 1;
+        if (cardList[i].statistic.questionsCount > 0) {
+          cardList[i].statistic.questionsCount -= 1;
+        }
       }
     }
     props.setCardBase(cardList);
-    setCurrentCount(currentCard.statistic.questionsCoun);
+    setCurrentCount(currentCard.statistic.questionsCount);
     localStorage.setItem('CardBase', JSON.stringify(cardList));
+  }
+
+  function changeCardColor(color: any) {
+    for (let i = 0; i < cardList.length; i++) {
+      if (cardList[i].id === CurrentListId) {
+        cardList[i].groupColor = color;
+      }
+    }
+    props.setCardBase(cardList);
+    localStorage.setItem('CardBase', JSON.stringify(cardList));
+    setCurrentCount(currentCount + 1);
   }
 
   return (
@@ -119,17 +144,26 @@ const QuestionsList: React.FC<any> = (props: any) => {
         :
         <div className={cn('questions_list_wrapper')}>
           <div className={cn('questions_list')}>
-            <div className={'questions_list-label_name'}>
-              НАЗВАНИЕ ТЕМЫ
+            <div className={'questions_list-change_block'}>
+              {colorsList.map((item: any, id: any) =>
+                <button key={id}
+                        className={cn('questions_list-change_color', item, item === currentCard.groupColor ? 'active' : '')}
+                        onClick={() => changeCardColor(item)}/>
+              )}
             </div>
-            <div className={'questions_list-name'}>
-              {cardName}
+            <div>
+              <div className={'questions_list-label_name'}>
+                НАЗВАНИЕ ТЕМЫ
+              </div>
+              <div className={'questions_list-name'}>
+                {cardName}
+              </div>
             </div>
             <div>
               {currentCard.questions.map((item: any, id: number) =>
                 <div key={id} className={cn('card_item-wrapper')}>
                   <div className={'card_item'}>
-                    <div className={'card_item-question'}>
+                    <div className={cn(currentCard.groupColor, 'card_item-question')}>
                       <div className={'card_item-label'}>
                         ВОПРОС
                       </div>
@@ -147,6 +181,11 @@ const QuestionsList: React.FC<any> = (props: any) => {
                     </div>
                   </div>
                   <div className={'card_item-buttons'}>
+                    <div className={'card_item-buttons-button'}>
+                      <button onClick={() => copyCard(item.id)}>
+                        <CopyIcon/>
+                      </button>
+                    </div>
                     <div className={'card_item-buttons-button'}>
                       <button onClick={() => changeCard(item.id)}>
                         <EditIcon/>

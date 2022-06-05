@@ -66,6 +66,7 @@ const Card: React.FC<any> = (props: any) => {
   }
 
   function changeQuestion() {
+    console.log(currentQuestions);
     currentQuestions = questions.filter((q: any) => q.date === 0);
     questionNumber = Math.floor(Math.random() * currentQuestions.length);
     if (currentQuestions.length === 0) {
@@ -74,6 +75,7 @@ const Card: React.FC<any> = (props: any) => {
       idQuestion = currentQuestions[questionNumber].id;
       setCurrentQuestion(questions.filter((q: any) => q.id === idQuestion)[0]);
     }
+    console.log(currentQuestions);
   }
 
   return (

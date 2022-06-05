@@ -6,6 +6,7 @@ import './CardList.css';
 import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
 import DeleteIcon from "../../images/DeleteIcon";
 import PlayIcon from "../../images/PlayIcon";
+import '../../ColorsList.css';
 
 const CardList: React.FC<any> = (props: any) => {
   const {dispatchChangeCurrentListId} = useContext(CurrentListIdContext);
@@ -50,7 +51,7 @@ const CardList: React.FC<any> = (props: any) => {
         </div>
         {cardList.map((list: any, id: number) =>
           <div className={cn('card_block')} key={id}>
-            <div className={'card_block-label_name'}>
+            <div className={cn('card_block-label_name', list.groupColor)}>
               {list.name}
             </div>
             <div className={'card_block-main_content'}>
