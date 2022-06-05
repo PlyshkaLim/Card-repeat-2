@@ -145,13 +145,18 @@ const QuestionsList: React.FC<any> = (props: any) => {
         <div className={cn('questions_list_wrapper')}>
           <div className={cn('questions_list')}>
             <div className={'questions_list-change_block'}>
-              {colorsList.map((item: any, id: any) =>
-                <button key={id}
-                        className={cn('questions_list-change_color', item, item === currentCard.groupColor ? 'active' : '')}
-                        onClick={() => changeCardColor(item)}/>
-              )}
+              <div className={'questions_list-change_block-label'}>
+                ВЫБЕРИТЕ ЦВЕТ ВСЕХ КАРТОЧЕК
+              </div>
+              <div className={'questions_list-change_block-colors'}>
+                {colorsList.map((item: any, id: any) =>
+                  <button key={id}
+                          className={cn('questions_list-change_color', item, item === currentCard.groupColor ? 'active' : '')}
+                          onClick={() => changeCardColor(item)}/>
+                )}
+              </div>
             </div>
-            <div>
+            <div className={'questions_list-block_name'}>
               <div className={'questions_list-label_name'}>
                 НАЗВАНИЕ ТЕМЫ
               </div>
