@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Card-repeat-2/static/css/main.6c72b6b9.css",
+    "main.css": "/Card-repeat-2/static/css/main.10b40912.css",
     "main.js": "/Card-repeat-2/static/js/main.87b73210.js",
     "index.html": "/Card-repeat-2/index.html",
-    "main.6c72b6b9.css.map": "/Card-repeat-2/static/css/main.6c72b6b9.css.map",
+    "main.10b40912.css.map": "/Card-repeat-2/static/css/main.10b40912.css.map",
     "main.87b73210.js.map": "/Card-repeat-2/static/js/main.87b73210.js.map"
   },
   "entrypoints": [
-    "static/css/main.6c72b6b9.css",
+    "static/css/main.10b40912.css",
     "static/js/main.87b73210.js"
   ]
 }
