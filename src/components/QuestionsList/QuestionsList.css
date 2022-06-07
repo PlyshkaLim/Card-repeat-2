@@ -80,9 +80,11 @@
 .active {
     border: 4px solid #006666;
 }
+
 .questions_list-block_name {
     width: 576px;
 }
+
 .questions_list-label_name {
     width: 576px;
     text-align: left;
@@ -163,8 +165,8 @@
 .change_card {
     width: 576px;
     height: 512px;
+    margin: 40px auto;
     border-radius: 20px;
-    margin: auto;
     text-align: left;
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
     display: flex;
