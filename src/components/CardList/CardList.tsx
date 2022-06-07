@@ -36,8 +36,8 @@ const CardList: React.FC<any> = (props: any) => {
           </Link>
         </div>
       </div>
-      <div className={cn('card_list')}>
-        <div className={cn('card_block new_card_block')}>
+      <div className={'card_list'}>
+        <div className={'card_block new_card_block'}>
           <div className={'card_block-content'}>
             Создайте свою
             {cardList.length === 0 ? <> первую </> : <> </>}
@@ -50,7 +50,7 @@ const CardList: React.FC<any> = (props: any) => {
           </div>
         </div>
         {cardList.map((list: any, id: number) =>
-          <div className={cn('card_block')} key={id}>
+          <div className={'card_block'} key={id}>
             <div className={cn('card_block-label_name', list.groupColor)}>
               {list.name}
             </div>

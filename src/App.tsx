@@ -70,7 +70,7 @@ const App: React.FC = () => {
         <div className={'content'}>
           <Routes>
             <Route path="/" element={<CardList cardBase={cardBase} setCardBase={setCardBase}/>}/>
-            <Route path="/card/:id" element={<Card cardBase={cardBase}/>}/>
+            <Route path="/card/:id" element={<Card cardBase={cardBase} setCardBase={setCardBase}/>}/>
             <Route path="/card/:id/statistics" element={<Statistics cardBase={cardBase}/>}/>
             <Route path="/card/:id/questions_list"
                    element={<QuestionsList cardBase={cardBase} setCardBase={setCardBase}/>}/>

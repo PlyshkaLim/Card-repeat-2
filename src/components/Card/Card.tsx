@@ -1,8 +1,10 @@
 import React, {useContext, useState} from 'react';
 import './Card.css';
+import '../../ColorsList.css';
 import {Link} from "react-router-dom";
 import {CurrentListIdContext} from "../../App";
 import JoytekaLogoPng from "../../images/JoytekaLogoPng.png";
+import cn from "classnames";
 
 const Card: React.FC<any> = (props: any) => {
   const emptyQuestion = {
@@ -14,34 +16,32 @@ const Card: React.FC<any> = (props: any) => {
   const {CurrentListId} = useContext(CurrentListIdContext);
 
   const cardList = props.cardBase;
-  const currentList = cardList.filter((i: any) => i.id === CurrentListId)[0];
-  let questions = currentList.questions;
-  //список всех вопросов в карточке доступных для повторения
-  let currentQuestions = questions.filter((q: any) => q.date === 0);
+  const currentList = cardList[findCardGroupById(CurrentListId)];
+
+  //список всех вопросов в карточке доступных для повторения, берем первый вопрос
+  let currentQuestions = currentList.questions.filter((q: any) => q.date === 0);
   //определяем рандомный номер вопроса
-  let questionNumber = Math.floor(Math.random() * currentQuestions.length);
+  let questionNumber = 0;
+  //Math.floor(Math.random() * currentQuestions.length);
   let idQuestion = 0;
+  if (currentQuestions.length !== 0) {
+    idQuestion = currentQuestions[questionNumber].id;
+  }
+
 
   const [currentQuestion, setCurrentQuestion] = useState<any>(initCurrentQuestion);
   const [currentAnswer, setCurrentAnswer] = useState<string>('');
   const [isQuestion, setIQuestion] = useState<boolean>(true);
 
-
   //инициируем первый вопрос если таковой имеется
   function initCurrentQuestion() {
     if (currentQuestions.length !== 0) {
-      idQuestion = currentQuestions[questionNumber].id;
-      return questions.filter((q: any) => q.id === idQuestion)[0];
+      idQuestion = currentQuestions[0].id;
+      //console.log('init idQ    ', idQuestion);
+      return currentQuestions[0];
     }
     return emptyQuestion;
   }
-
-  // if (currentQuestions.length !== 0) {
-  //   idQuestion = currentQuestions[questionNumber].id;
-  //   let cQ = questions.filter((q: any) => q.id === idQuestion)[0];
-  //   console.log()
-  //   setCurrentQuestion(cQ);
-  // }
 
   const checkAnswer = () => {
     setIQuestion(false);
@@ -53,29 +53,53 @@ const Card: React.FC<any> = (props: any) => {
 
   const answerCorrect = () => {
     currentList.statistic.correctAnswers += 1;
-    questions.map((q: any) => q.id === idQuestion ? q.date += 2 : q.date)
-    setIQuestion(true);
+    //questions.map((q: any) => q.id === idQuestion ? q.date += 2 : q.date)
+    cardList[findCardGroupById(CurrentListId)].questions[findCardById(idQuestion)].date += 2;
     changeQuestion();
   }
 
   const answerIncorrect = () => {
+    console.log(cardList[findCardGroupById(CurrentListId)].questions);
+    console.log(idQuestion);
     currentList.statistic.incorrectAnswers += 1;
-    questions.map((q: any) => q.id === idQuestion ? q.date += 1 : q.date)
-    setIQuestion(true);
+    //questions.map((q: any) => q.id === idQuestion ? q.date += 1 : q.date)
+    cardList[findCardGroupById(CurrentListId)].questions[findCardById(idQuestion)].date += 1;
+    console.log(cardList[findCardGroupById(CurrentListId)].questions[findCardById(idQuestion)]);
+    console.log(idQuestion);
     changeQuestion();
   }
 
   function changeQuestion() {
-    console.log(currentQuestions);
-    currentQuestions = questions.filter((q: any) => q.date === 0);
-    questionNumber = Math.floor(Math.random() * currentQuestions.length);
+    props.setCardBase(cardList);
+    localStorage.setItem('CardBase', JSON.stringify(cardList));
+    setIQuestion(true);
+    currentQuestions = currentList.questions.filter((q: any) => q.date === 0);
+    console.log('currentQuestions   ', currentQuestions)
+    questionNumber = 0;
     if (currentQuestions.length === 0) {
       setCurrentQuestion(emptyQuestion);
     } else {
-      idQuestion = currentQuestions[questionNumber].id;
-      setCurrentQuestion(questions.filter((q: any) => q.id === idQuestion)[0]);
+      idQuestion = currentQuestions[0].id;
+      setCurrentQuestion(currentList.questions.filter((q: any) => q.id === idQuestion)[0]);
     }
-    console.log(currentQuestions);
+  }
+
+  function findCardGroupById(id: number) {
+    for (let i = 0; i < cardList.length; i++) {
+      if (cardList[i].id === id) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
+  function findCardById(id: number) {
+    for (let i = 0; i < currentList.questions.length; i++) {
+      if (currentList.questions[i].id === id) {
+        return i;
+      }
+    }
+    return 0;
   }
 
   return (
@@ -89,18 +113,25 @@ const Card: React.FC<any> = (props: any) => {
         </div>
         <div className={'header-card-buttons'}>
           <Link to={'/'}>
-            <button>ЗАВЕРШИТЬ ДОСРОЧНО</button>
+            <button>
+              {currentQuestion.id !== -1
+                ?
+                <>ЗАВЕРШИТЬ ДОСРОЧНО</>
+                :
+                <>КО ВСЕМ ТЕМАМ</>
+              }
+            </button>
           </Link>
         </div>
       </div>
       <div className={'card'}>
         <div className={'card_content'}>
-          <div className={'card_content-question'}>
+          <div className={cn('card_content-question', currentList.groupColor)}>
             <div className={'card_content-question-label'}>
               ВОПРОС
             </div>
             <div className={'card_content-question-text'}>
-              {currentQuestion !== -1 ?
+              {currentQuestion.id !== -1 ?
                 <>{currentQuestion.question}</>
                 :
                 <>Вы повторили все карточки!</>
@@ -114,18 +145,38 @@ const Card: React.FC<any> = (props: any) => {
                 <div className={'card_content-answer-label'}>
                   ВАШ ОТВЕТ
                 </div>
-                <div className={'card_content-answer-check'}>
-                  <div className={'card_content-answer-check-input'}>
-                    <textarea onChange={handleChange}
-                              placeholder={'Введите верный ответ прямо тут'}/>
-                  </div>
-                  <div className={'card_content-answer-check-button'}>
-                    <button onClick={checkAnswer}
-                            disabled={currentAnswer === ''}>
-                      ОТВЕТИТЬ
-                    </button>
-                  </div>
-                </div>
+                {currentQuestion.id !== -1 ?
+                  <>
+                    <div className={'card_content-answer-check'}>
+                      <div className={'card_content-answer-check-input'}>
+                        <textarea onChange={handleChange}
+                                  placeholder={'Введите верный ответ прямо тут'}/>
+                      </div>
+                      <div className={'card_content-answer-check-button'}>
+                        <button onClick={checkAnswer}
+                                disabled={currentAnswer === '' || currentQuestion.id === -1}>
+                          ОТВЕТИТЬ
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                  :
+                  <>
+                    <div className={'card_content-answer-check'}>
+                      <div className={'card_content-answer-check-input'}>
+                        <textarea onChange={handleChange}
+                                  placeholder={'Вы повторили все карточки!'}/>
+                      </div>
+                      <div className={'card_content-answer-check-button'}>
+                        <Link to={'/'}>
+                          <button>
+                            КО ВСЕМ ТЕМАМ
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  </>
+                }
               </>
               :
               <div>
